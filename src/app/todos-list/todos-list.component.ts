@@ -1,10 +1,8 @@
 import { NgFor } from "@angular/common";
-import { HttpClient } from "@angular/common/http";
 import { Component, inject } from "@angular/core";
-import { UsersApiService } from "../users-api.service";
-import { TodoCardComponent } from "./todo-card/todo-card.component";
 import { TodosApiService } from "../todos-api.service";
 import { Todo } from "../interfaces/todo.interface";
+import { TodoCardComponent } from "./todo-card/todo-card.component";
 
 @Component({
     selector: 'app-users-list',
@@ -14,22 +12,27 @@ import { Todo } from "../interfaces/todo.interface";
     imports: [NgFor, TodoCardComponent]
 })
 
-
 export class TodosListComponent {
-    readonly todosApiService = inject(TodosApiService);
-    todos: Todo[] = []
+    readonly todosApiService = inject(TodosApiService)
+    todos: Todo[] = [];
 
     constructor() {
         this.todosApiService.getTodos().subscribe(
             (response: any) => {
-                this.todos = response;
-                console.log('TODOS', this.todos)     
+                this.todos = response
             }
         )
     }
-    deleteTodo(id: number) {
+
+    deleteTodo(id: any) {
         this.todos = this.todos.filter(
-            (item: any) => item.id !== id
+            todo => {
+                if (id === todo.id) {
+                    return false
+                } else {
+                    return true
+                }
+            }
         )
     }
 }

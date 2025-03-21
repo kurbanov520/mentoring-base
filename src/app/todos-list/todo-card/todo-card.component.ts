@@ -1,19 +1,19 @@
+import { NgFor } from "@angular/common";
 import { Component, EventEmitter, Input, Output } from "@angular/core";
-import { Todo } from "../../interfaces/todo.interface";
 
 @Component({
     selector: 'app-todo-card',
     templateUrl: './todo-card.component.html',
     styleUrl: './todo-card.component.scss',
     standalone: true,
+    imports: [NgFor]
 })
-
 export class TodoCardComponent {
     @Input()
-    todo!: Todo;
+    todo: any;
 
     @Output()
-    deleteTodo = new EventEmitter()
+    deleteTodo = new EventEmitter();
 
     onDeleteTodo(todoId: number) {
         this.deleteTodo.emit(todoId)

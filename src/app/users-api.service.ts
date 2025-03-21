@@ -4,6 +4,9 @@ import { inject, Injectable } from "@angular/core";
 @Injectable({providedIn: 'root'})
 
 export class UsersApiService {
+    getTodos() {
+        throw new Error("Method not implemented.");
+    }
     readonly apiService = inject(HttpClient);
 
     getUsers() {
