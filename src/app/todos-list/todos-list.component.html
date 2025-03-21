@@ -1,0 +1,7 @@
+КОМПОНЕНТ СПИСКА ЗАДАЧ
+
+<div style="display: flex; width: 100%; flex-wrap: wrap;">
+    <div *ngFor="let item of todos">
+        <app-todo-card [todo]="item" (deleteTodo)='deleteTodo($event)'></app-todo-card>
+    </div>
+</div>

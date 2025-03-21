@@ -3,15 +3,19 @@
     <div class="header-left">
       <img class="header-logo" src="/assets/Frame.svg" alt="logo">
       <nav class="header-nav">
-        <div class="header-nav-item">Главная</div>
-        <div class="header-nav-item">О компании</div>
-        <div class="header-nav-item">Каталог</div>
+        <div class="header-nav-item" routerLink="users">{{headerItem1}}</div>
+        <div class="header-nav-item" routerLink="todos">{{copyCopyMyFunc}}</div>
+        <div class="header-nav-item" *ngIf="isShowCatalog" routerLink="header-catalog">{{headerItem3}}</div>
+        <button (click)="isShowPhoto = !isShowPhoto"> Показать/Убрать Фото </button>
       </nav>
+      <button (click)="isShowCatalog = !isShowCatalog">Скрыть/Показать каталог</button>
+      <button (click)="changeMenuText()">Изменить текст</button>
     </div>
     <div class="header-right">
       <div class="header-nav-image"><img src="/assets/Phone.svg" alt=""></div>
       <nav class="header-nav">
-        <div class="header-nav-item-two">+7 (965) 084-29-29</div>
+        <div class="header-nav-item-two" *ngIf="isShowCatalog2">+7 (965) 084-29-29</div>
+        <button (click)="isShowCatalog2 = !isShowCatalog2">Скрыть номер телефона</button>
         <div class="header-nav-item-two"><img src="/assets/heart.svg" alt="heart"></div>
         <div class="header-nav-item-two header-nav-item-two-border"><img src="/assets/Mask.svg" alt="shop">Пусто</div>
       </nav>
@@ -23,11 +27,7 @@
     <div class="header-left-two">
       <div class="header-logo-two"><img src="/assets/light.svg" alt="light"></div>
       <nav class="header-nav">
-        <div class="header-nav-item">Каталог</div>
-        <div class="header-nav-item">Стройматериалы</div>
-        <div class="header-nav-item">Инструменты</div>
-        <div class="header-nav-item">Электрика</div>
-        <div class="header-nav-item">Интерьер и одежда</div>
+        <div class="header-nav-item" *ngFor="let item of copyUpperItemNames">{{item}}</div>
       </nav>
     </div>
     <div class="header-right">
@@ -40,13 +40,18 @@
     </div>
   </div>
 </div>
-<div>
-  <img style="width: 100%;" src="/assets/Rectangle.png" alt="backgroud-large">
-</div>
+
+<!-- Сверху header -->
 
 
 
-<div class="advantage-container">
+<!-- <div>
+  <img style="width: 100%;" src="/assets/Rectangle.png" alt="backgroud-large" *ngIf="isShowPhoto">
+</div> -->
+
+
+
+<!-- <div class="advantage-container">
   <div class="advantage">
     <img class="advantage-image" src="/assets/box.svg" alt="">
     <div class="advantage-content">
@@ -75,11 +80,7 @@
 <div class="content-container">
   <div class="item-cards">
     <div class="item-cards-pagination">
-      <button class="item-cards-pagination-button active-button">1</button>
-      <button class="item-cards-pagination-button">2</button>
-      <button class="item-cards-pagination-button">3</button>
-      <button class="item-cards-pagination-button">4</button>
-      <button class="item-cards-pagination-button">5</button>
+      <button class="item-cards-pagination-button active-button" *ngFor="let item of copyNewPages">{{item}}</button>
     </div>
     <div class="item-cards-grid">
       <div class="item-cards-grid-left">
@@ -143,6 +144,9 @@
           <div class="block-image-love-2">
             <div class="block-love-1">%</div>
             <div class="block-love-2">
+
+
+
               <img src="/assets/Vector.svg" alt="">
             </div>
           </div>
@@ -279,14 +283,14 @@
       <div class="catalog-text-2">Инструмент для вашего бизнеса, разнообразных марок</div>
       <div class="catalog-text-3">Перейти в каталог</div>
     </div>
-  </div>
+  </div> -->
 
 
   <!-- Второй блок каталога -->
 
 
 
-  <div class="item-cards-2 item-cards-2_1">
+  <!-- <div class="item-cards-2 item-cards-2_1">
     <div class="item-cards-text">
       <div class="item-text">Новинки</div>
       <div class="list-text">Посмотреть все товары</div>
@@ -432,13 +436,13 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->
 
 <!-- С катологом решили, теперь переходим к footer -->
 
 
-<div class="footer">
-  <div class="footer-1">
+<!-- <div class="footer"> -->
+  <!-- <div class="footer-1">
 
 
     <div class="footer-left">
@@ -531,5 +535,10 @@
     </div>
 
 
-  </div>
-</div>
+  </div> -->
+
+  
+<!-- </div> -->
+
+<router-outlet></router-outlet>
+

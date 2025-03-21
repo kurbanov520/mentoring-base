@@ -1,0 +1,7 @@
+<div style="width: 200px; height: 200px; border: 1px solid black; margin: 5px; padding: 10px;">
+    <p>{{$any(user).name}}</p>
+    <p>{{$any(user).email}}</p>
+    <p>{{$any(user).website}}</p>
+    <p>{{$any(user).company.name}}</p>
+    <button (click)=onDeleteUser(user.id)>УДАЛИТЬ ЮЗЕРА</button>
+</div>
