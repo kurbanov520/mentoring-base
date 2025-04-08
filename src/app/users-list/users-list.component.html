@@ -1,8 +1,7 @@
-ПРОСТО СПИСОК НИЧЕГО БОЛЕЕ
-
 <div style="width: 1320px; margin: 0 auto;">
+    <app-create-user (createUser)="createUser($event)"></app-create-user>
     <div style="display: flex; flex-wrap: wrap;">
-        <div *ngFor="let item of users">
+        <div *ngFor="let item of usersService.users$ | async">
             <app-user-card [user]="item" (deleteUserOne)="deleteUser($event)"></app-user-card>
         </div>
     </div>

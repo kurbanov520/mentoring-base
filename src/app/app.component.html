@@ -16,6 +16,7 @@
       <nav class="header-nav">
         <div class="header-nav-item-two" *ngIf="isShowCatalog2">+7 (965) 084-29-29</div>
         <button (click)="isShowCatalog2 = !isShowCatalog2">Скрыть номер телефона</button>
+        <button routerLink="posts">POSTS</button>
         <div class="header-nav-item-two"><img src="/assets/heart.svg" alt="heart"></div>
         <div class="header-nav-item-two header-nav-item-two-border"><img src="/assets/Mask.svg" alt="shop">Пусто</div>
       </nav>
@@ -539,6 +540,6 @@
 
   
 <!-- </div> -->
-
 <router-outlet></router-outlet>
+
 

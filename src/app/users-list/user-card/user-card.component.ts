@@ -1,22 +1,20 @@
-import { Component, EventEmitter, Input, Output } from "@angular/core";
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { User } from '../../interfaces/user.interface';
 
 @Component({
-    selector: 'app-user-card',
-    templateUrl: './user-card.component.html',
-    styleUrl: './user-card.component.scss',
-    standalone: true,
+  selector: 'app-user-card',
+  templateUrl: './user-card.component.html',
+  styleUrl: './user-card.component.scss',
+  standalone: true,
 })
-
 export class UserCardComponent {
-    @Input()
+  @Input()
+  user!: User;
 
-    user: any
+  @Output()
+  deleteUserOne = new EventEmitter();
 
-    @Output()
-
-    deleteUserOne = new EventEmitter()
-
-    onDeleteUser(userId: number) {
-        this.deleteUserOne.emit(userId)
-    }
+  onDeleteUser(userId: number) {
+    this.deleteUserOne.emit(userId);
+  }
 }

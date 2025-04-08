@@ -1,36 +1,56 @@
-import { NgFor } from "@angular/common";
+import { AsyncPipe, NgFor, NgIf } from "@angular/common";
 import { HttpClient } from "@angular/common/http";
-import { Component, inject } from "@angular/core";
+import { ChangeDetectionStrategy, Component, inject } from "@angular/core";
 import { UsersApiService } from "../users-api.service";
 import { UserCardComponent } from "./user-card/user-card.component";
+import { usersService } from "../users.service";
+import { CreateUserFormComponent } from "../create-user-form/create-user-form.component";
 import { User } from "../interfaces/user.interface";
-
 
 @Component({
     selector: 'app-users-list',
     templateUrl: './users-list.component.html',
     styleUrl: './users-list.component.scss',
     standalone: true,
-    imports: [NgFor, UserCardComponent]
+    imports: [NgFor, UserCardComponent, AsyncPipe, CreateUserFormComponent],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 
 
 export class UsersListComponent {
+
     readonly usersApiService = inject(UsersApiService);
-    users: User[] = []
+    readonly usersService = inject(usersService)
 
     constructor() {
         this.usersApiService.getUsers().subscribe(
             (response: any) => {
-                this.users = response;
-                console.log('USERS', this.users);
-                
+                this.usersService.setUsers(response)
             }
         )
-    }
+
+        this.usersService.users$.subscribe( (users) => console.log(users))
+}
+
+
     deleteUser(id: number) {
-        this.users = this.users.filter(
-            (item: any) => item.id !== id
-        )
+        this.usersService.deleteUser(id);
+    }
+
+    public createUser(formData: any) {
+        this.usersService.createUser({
+            id: new Date().getTime(),
+            name: formData.name,
+            email: formData.email,
+            website: formData.website,
+            company: {
+                name: formData.companyName
+            }
+        })
+        console.log('Данные формы: ', event);
     }
 }
+
+
+
+
