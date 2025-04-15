@@ -1,18 +1,17 @@
 import { AsyncPipe, NgFor, NgIf } from "@angular/common";
-import { HttpClient } from "@angular/common/http";
 import { ChangeDetectionStrategy, Component, inject } from "@angular/core";
 import { UsersApiService } from "../users-api.service";
 import { UserCardComponent } from "./user-card/user-card.component";
 import { usersService } from "../users.service";
 import { CreateUserFormComponent } from "../create-user-form/create-user-form.component";
-import { User } from "../interfaces/user.interface";
+
 
 @Component({
     selector: 'app-users-list',
     templateUrl: './users-list.component.html',
     styleUrl: './users-list.component.scss',
     standalone: true,
-    imports: [NgFor, UserCardComponent, AsyncPipe, CreateUserFormComponent],
+    imports: [NgFor, UserCardComponent, AsyncPipe, CreateUserFormComponent,],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 

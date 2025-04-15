@@ -1,39 +1,34 @@
 import { HttpClient } from "@angular/common/http";
 import { ChangeDetectionStrategy, Component, inject } from "@angular/core";
 import { Posts } from "../interfaces/posts.interface";
-import { NgFor, NgIf } from "@angular/common";
+import { AsyncPipe, NgFor, NgIf } from "@angular/common";
 import { BehaviorSubject, map } from "rxjs";
+import { CreatePostFormComponent } from "../create-post-form/create-post-form.component";
+import { PostsApiService } from "../posts-api.service";
+import { PostService } from "../posts.service";
 
 @Component({
     selector: 'api-posts-component',
     templateUrl: './posts-list.component.html',
     styleUrl: './posts-list.component.scss',
     standalone: true,
-    imports: [NgFor],
+    imports: [NgFor, CreatePostFormComponent, AsyncPipe],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 
 export class PostsComponent {
-    readonly getApiPosts = inject(HttpClient)
-    takje: Posts[] = []
+    readonly getApiPosts = inject(PostsApiService)
+    readonly postService = inject(PostService)
 
     constructor() {
-        this.getApiPosts.get('https://jsonplaceholder.typicode.com/posts').subscribe(
-            (item : any) => {
-                this.takje = item
+        this.getApiPosts.getPosts().subscribe(
+            (item: any) => {
+                this.postService.setPost(item)
             }
         )
     }
 
-    kutuvhIzu(luboy: number) {
-        this.takje = this.takje.filter(
-            izu => {
-                if (luboy === izu.id) {
-                    return false
-                }
-                else {
-                    return true
-                }
-            }
-        )
+    kutuvhIzu(id: number) {
+        this.postService.deletePost(id)
     }
 }

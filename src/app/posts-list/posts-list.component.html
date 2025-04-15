@@ -1,5 +1,6 @@
+<app-post-create-form></app-post-create-form>
 <div style="display: flex; width: 1320px; flex-wrap: wrap; margin: 0 auto;">
-    <div *ngFor="let prosto of takje" style="border: 1px solid red; width: 350px; margin: 10px; padding: 10px;">
+    <div *ngFor="let prosto of postService.posts$ | async" style="border: 1px solid red; width: 350px; margin: 10px; padding: 10px;">
         <p>{{$any(prosto.userId)}}</p>
         <p>{{$any(prosto.id)}}</p>
         <p>{{$any(prosto.title)}}</p>
