@@ -16,35 +16,29 @@ export class TodosService {
 
         this.todosSubject$.next(
             this.todosSubject$.value.map(
-                todo => {
-                    if (todo.id === editedTodo.id) {
-                        return editedTodo
-                    }
-                    else {
-                        return todo
-                    }
-                }
+                todo => todo.id === editedTodo.id ? editedTodo: todo
             )
         )
     }
 
-    createUser(todo: Todo) {
-        this.todosSubject$.next(
-            [...this.todosSubject$.value, todo]
+    createTodo(todo: Todo) {
+        const existingTodo = this.todosSubject$.value.find(
+            (currentElement) => currentElement.title === todo.title
         )
+
+        if(existingTodo !== undefined) {
+            alert('ТАКОЙ TITLE УЖЕ СУЩЕСТВУЕТ');    
+        }else{
+            this.todosSubject$.next([...this.todosSubject$.value, todo])
+            alert('НОВЫЙ TODO УСПЕШНО ДОБАВЛЕН');  
+        }
+
     }
 
     deleteUser(id: number) {
         this.todosSubject$.next(
             this.todosSubject$.value.filter(
-                (item: any) => {
-                    if (id === item.id) {
-                        return false
-                    }
-                    else{
-                        return true
-                    }
-                }
+                (item: any) => id === item.id ? false: true
             )
         )
 

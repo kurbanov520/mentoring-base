@@ -1,12 +1,11 @@
-<div style="width: 1320px; margin: 0 auto;">
-    <form style="display: flex; flex-direction: column;">
-        <p>userId: </p>
-        <input type="text">
-        <p>id: </p>
-        <input type="text">
-        <p>title: </p>
-        <input type="text">
-        <p>body: </p>
-        <input type="text">
-    </form>
+<div class="div-form-general">
+    <div class="div-form-general-two">
+        <form class="div-form" [formGroup]="form" (ngSubmit)="submitForm()">
+            <p>TITLE: </p>
+            <input type="text" formControlName="title">
+            <p>BODY: </p>
+            <input type="text" formControlName="body">
+            <button class="button" [disabled]="form.invalid">CREATE USER</button>
+        </form>
+    </div>
 </div>

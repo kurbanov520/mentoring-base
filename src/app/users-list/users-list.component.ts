@@ -30,8 +30,6 @@ export class UsersListComponent {
 
         this.usersService.users$.subscribe( (users) => console.log(users))
 }
-
-
     deleteUser(id: number) {
         this.usersService.deleteUser(id);
     }
@@ -46,7 +44,6 @@ export class UsersListComponent {
                 name: formData.companyName
             }
         })
-        console.log('Данные формы: ', event);
     }
 }
 

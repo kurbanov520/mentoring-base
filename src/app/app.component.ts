@@ -11,8 +11,6 @@ const upperItemNames = itemNames.map (
   }
 )
 
-console.log(upperItemNames);
-
 const newPages = ['5', '4', '3', '2', '1']
 
 

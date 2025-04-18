@@ -1,4 +1,4 @@
-export interface User {
+export interface IUser {
     id: number;
     name: string;
     username?: string;
@@ -19,7 +19,7 @@ export interface User {
          name: string;
     }
 } 
-export interface Iuser {
+export interface ICreateuser {
     id: number;
     name: string;
     email: string;

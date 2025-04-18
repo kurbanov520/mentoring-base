@@ -5,7 +5,7 @@
       <nav class="header-nav">
         <div class="header-nav-item" routerLink="users">{{headerItem1}}</div>
         <div class="header-nav-item" routerLink="todos">{{copyCopyMyFunc}}</div>
-        <div class="header-nav-item" *ngIf="isShowCatalog" routerLink="header-catalog">{{headerItem3}}</div>
+        <div class="header-nav-item" *ngIf="isShowCatalog">{{headerItem3}}</div>
         <button (click)="isShowPhoto = !isShowPhoto"> Показать/Убрать Фото </button>
       </nav>
       <button (click)="isShowCatalog = !isShowCatalog">Скрыть/Показать каталог</button>

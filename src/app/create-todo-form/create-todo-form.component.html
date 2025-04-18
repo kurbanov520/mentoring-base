@@ -1,0 +1,9 @@
+<div class="form-general">
+        <form class="div-form-general-one" [formGroup]="form" (ngSubmit)="submitButton()">
+            <p>TITLE</p>
+            <input type="text" formControlName="title">
+            <p>COMPLETED</p>
+            <input type="text" formControlName="completed">
+            <button class="button" [disabled]="form.invalid">CREATE TODO</button>
+        </form>
+</div>
