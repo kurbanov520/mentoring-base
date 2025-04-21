@@ -2,7 +2,7 @@
     <app-create-user (createUser)="createUser($event)"></app-create-user>
     <div style="display: flex; flex-wrap: wrap;">
         <div *ngFor="let item of usersService.users$ | async">
-            <app-user-card [user]="item" (deleteUserOne)="deleteUser($event)"></app-user-card>
+            <app-user-card [user]="item" (deleteUserOne)="deleteUser($event)" (editUser)="editUser($event)"></app-user-card>
         </div>
     </div>
 </div>

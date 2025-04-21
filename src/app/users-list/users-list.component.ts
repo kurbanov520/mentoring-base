@@ -34,6 +34,15 @@ export class UsersListComponent {
         this.usersService.deleteUser(id);
     }
 
+    editUser(user: any) {
+        this.usersService.editUser({
+            ...user,
+            company: {
+                name: user.companyName
+            }
+        })
+    }
+
     public createUser(formData: any) {
         this.usersService.createUser({
             id: new Date().getTime(),
@@ -46,7 +55,3 @@ export class UsersListComponent {
         })
     }
 }
-
-
-
-
