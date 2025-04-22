@@ -3,7 +3,8 @@ import { ChangeDetectionStrategy, Component, inject } from "@angular/core";
 import { UsersApiService } from "../users-api.service";
 import { UserCardComponent } from "./user-card/user-card.component";
 import { usersService } from "../users.service";
-import { CreateUserFormComponent } from "../create-user-form/create-user-form.component";
+import { MatDialog } from "@angular/material/dialog";
+import { CreateUserFormDialog } from "./create-user-dialog/create-user-dialog.component";
 
 
 @Component({
@@ -11,13 +12,14 @@ import { CreateUserFormComponent } from "../create-user-form/create-user-form.co
     templateUrl: './users-list.component.html',
     styleUrl: './users-list.component.scss',
     standalone: true,
-    imports: [NgFor, UserCardComponent, AsyncPipe, CreateUserFormComponent,],
+    imports: [NgFor, UserCardComponent, AsyncPipe],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 
 
 export class UsersListComponent {
-
+    
+    readonly dialog = inject(MatDialog);
     readonly usersApiService = inject(UsersApiService);
     readonly usersService = inject(usersService)
 
@@ -53,5 +55,17 @@ export class UsersListComponent {
                 name: formData.companyName
             }
         })
+    }
+    
+
+    openCreateUserDialog() {
+        const dialogRef = this.dialog.open(CreateUserFormDialog, {
+              data: { user: null }
+            });
+        
+            dialogRef.afterClosed().subscribe((userData) => {
+                if(!userData) return;
+                this.usersService.createUser(userData) 
+            });
     }
 }

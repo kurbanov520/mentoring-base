@@ -1,5 +1,5 @@
 <div style="width: 1320px; margin: 0 auto;">
-    <app-create-user (createUser)="createUser($event)"></app-create-user>
+    <button (click)="openCreateUserDialog()">CREATE USER</button>
     <div style="display: flex; flex-wrap: wrap;">
         <div *ngFor="let item of usersService.users$ | async">
             <app-user-card [user]="item" (deleteUserOne)="deleteUser($event)" (editUser)="editUser($event)"></app-user-card>

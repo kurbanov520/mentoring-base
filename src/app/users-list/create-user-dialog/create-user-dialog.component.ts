@@ -1,18 +1,21 @@
-import { Component, EventEmitter, Output } from "@angular/core";
+import { Component, EventEmitter, inject, Output } from "@angular/core";
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
+import { MatDialogRef } from "@angular/material/dialog";
+
 
 @Component({
-    selector: 'app-create-user',
-    templateUrl: './create-user-form.component.html',
-    styleUrl: './create-user-form.component.scss',
+    selector: 'app-user-dialog',
+    templateUrl: './create-user-dialog.component.html',
     standalone: true,
     imports: [ReactiveFormsModule]
 })
 
-export class CreateUserFormComponent {
+export class CreateUserFormDialog {
 
     @Output()
     createUser = new EventEmitter()
+
+    readonly matDialogRef = inject(MatDialogRef<CreateUserFormDialog>)
 
     public form = new FormGroup({
         name: new FormControl(null, [Validators.required, Validators.minLength(2)]),
@@ -22,8 +25,15 @@ export class CreateUserFormComponent {
     })
 
     public submitForm(): void {
-        this.createUser.emit(this.form.value)
+        this.matDialogRef.close({
+            ...this.form.value,
+            company: {
+                name: this.form.value.companyName
+            }
+        })
         this.form.reset()
+        console.log('submit работает');
+        
     }
 
     @Output()
@@ -32,6 +42,8 @@ export class CreateUserFormComponent {
     public submitCreateForm(): void {
         this.createUserModal.emit()
     }
+
+
 
 
 
