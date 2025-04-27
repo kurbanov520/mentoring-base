@@ -28,10 +28,9 @@ export class usersService {
         )
 
         if(existingUser !== undefined) {
-            alert('ТАКОЙ EMAIL УЖЕ СУЩЕСТВУЕТ');    
+            alert('ТАКОЙ EMAIL УЖЕ СУЩЕСТВУЕТ');
         }else{
             this.usersSubject$.next([...this.usersSubject$.value, user])
-            alert('НОВЫЙ USER УСПЕШНО ДОБАВЛЕН');  
         }
     }
 

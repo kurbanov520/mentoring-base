@@ -1,13 +1,17 @@
 import { Component, EventEmitter, inject, Output } from "@angular/core";
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
 import { MatDialogRef } from "@angular/material/dialog";
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+import { MatSnackBar, MatSnackBarModule} from '@angular/material/snack-bar';
 
 
 @Component({
     selector: 'app-user-dialog',
     templateUrl: './create-user-dialog.component.html',
+    styleUrl: 'create-user-dialog.component.scss',
     standalone: true,
-    imports: [ReactiveFormsModule]
+    imports: [ReactiveFormsModule, MatButtonModule, MatInputModule, MatSnackBarModule]
 })
 
 export class CreateUserFormDialog {
@@ -16,6 +20,7 @@ export class CreateUserFormDialog {
     createUser = new EventEmitter()
 
     readonly matDialogRef = inject(MatDialogRef<CreateUserFormDialog>)
+    private snackBar: MatSnackBar = inject(MatSnackBar)
 
     public form = new FormGroup({
         name: new FormControl(null, [Validators.required, Validators.minLength(2)]),
@@ -32,9 +37,8 @@ export class CreateUserFormDialog {
             }
         })
         this.form.reset()
-        console.log('submit работает');
-        
     }
+
 
     @Output()
     createUserModal = new EventEmitter()
@@ -42,9 +46,5 @@ export class CreateUserFormDialog {
     public submitCreateForm(): void {
         this.createUserModal.emit()
     }
-
-
-
-
 
 }

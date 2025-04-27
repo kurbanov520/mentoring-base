@@ -1,14 +1,26 @@
 <h1 style="padding: 30px;">CREATE USER FORM</h1>
 <div style="margin: 30px 30px 30px 0; padding: 50px;">
     <form style="display: flex; flex-direction: column;" [formGroup]="form">
-        <p>NAME: </p>
-        <input type="text" class="form-input" formControlName="name">
-        <p>EMAIL: </p>
-        <input type="text" class="form-input" formControlName="email">
-        <p>WEBSITE: </p>
-        <input type="text" class="form-input" formControlName="website">
-        <p>COMPANY NAME: </p>
-        <input type="text" class="form-input" formControlName="companyName">
-        <button style="width: 150px; margin: 30px 0;" [disabled]="form.invalid" [mat-dialog-close]="userWithUpdatedFileds">EDIT USER</button>
+      <mat-form-field>
+        <mat-label>NAME</mat-label>
+        <input matInput placeholder="name" formControlName="name" class="form-input">
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>EMAIL</mat-label>
+        <input matInput placeholder="email" formControlName="email" class="form-input">
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>WEBSITE</mat-label>
+        <input matInput placeholder="website" formControlName="website" class="form-input">
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>COMPANYNAME</mat-label>
+        <input matInput placeholder="companyName" formControlName="companyName" class="form-input">
+      </mat-form-field>
+
+        <button mat-button style="width: 150px; margin: 30px 0;" [disabled]="form.invalid" [mat-dialog-close]="userWithUpdatedFileds">EDIT USER</button>
     </form>
 </div>

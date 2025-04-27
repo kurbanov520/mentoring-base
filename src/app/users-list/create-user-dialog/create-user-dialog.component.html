@@ -1,14 +1,30 @@
-<h1>CREATE USER FORM</h1>
-<div style="margin: 30px 30px 30px 0;">
+<div class="createUserForm">
+  <h1>CREATE USER FORM</h1>
+  <div style="margin: 30px 30px 30px 0;">
     <form style="display: flex; flex-direction: column;" [formGroup]="form">
-        <p>NAME: </p>
-        <input type="text" class="form-input" formControlName="name">
-        <p>EMAIL: </p>
-        <input type="text" class="form-input" formControlName="email">
-        <p>WEBSITE: </p>
-        <input type="text" class="form-input" formControlName="website">
-        <p>COMPANY NAME: </p>
-        <input type="text" class="form-input" formControlName="companyName"> 
-        <button (click)="submitForm()" style="width: 150px; margin: 30px 0;" [disabled]="form.invalid" type="button">CREATE USER</button>
+
+      <mat-form-field>
+        <mat-label>NAME</mat-label>
+        <input matInput placeholder="name" formControlName="name">
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Email</mat-label>
+        <input matInput type="email" placeholder="email" formControlName="email">
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Email</mat-label>
+        <input matInput  placeholder="website" formControlName="website">
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Email</mat-label>
+        <input matInput placeholder="companyName" formControlName="companyName">
+      </mat-form-field>
+
+      <button mat-button (click)="submitForm()" style="width: 150px; margin: 30px 0;" [disabled]="form.invalid" type="button">CREATE USER</button>
     </form>
+  </div>
+
 </div>
