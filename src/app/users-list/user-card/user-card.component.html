@@ -1,10 +1,10 @@
 <div style="width: 300px; height: 230px;">
-<mat-card style="padding: 10px; margin-top: 10px;">
+<mat-card style="padding: 10px; margin-top: 10px;" userboxshadow>
   <p>{{$any(user).name}}</p>
   <p>{{$any(user).email}}</p>
   <p>{{$any(user).website}}</p>
   <p>{{$any(user).company.name}}</p>
-  <button mat-raised-button color="warn" (click)=onDeleteUser(user.id) class="deleteUser">УДАЛИТЬ ЮЗЕРА</button>
+  <button mat-raised-button color="warn" (click)="openCloseDialog()" class="deleteUser">УДАЛИТЬ ЮЗЕРА</button>
   <button mat-raised-button color="primary" (click)=openDialog() class="editUser">РЕДАКТИРОВАТЬ ЮЗЕРА</button>
 </mat-card>
 </div>

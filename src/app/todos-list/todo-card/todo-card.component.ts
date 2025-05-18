@@ -1,5 +1,6 @@
 import { NgFor } from "@angular/common";
 import { Component, EventEmitter, Input, Output } from "@angular/core";
+import {TodosPipe} from "../../pipes/todos.pipe";
 
 @Component({
     selector: 'app-todo-card',

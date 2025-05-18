@@ -4,14 +4,14 @@ import { MatDialogRef } from "@angular/material/dialog";
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatSnackBar, MatSnackBarModule} from '@angular/material/snack-bar';
-
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 @Component({
     selector: 'app-user-dialog',
     templateUrl: './create-user-dialog.component.html',
     styleUrl: 'create-user-dialog.component.scss',
     standalone: true,
-    imports: [ReactiveFormsModule, MatButtonModule, MatInputModule, MatSnackBarModule]
+    imports: [ReactiveFormsModule, MatButtonModule, MatInputModule, MatSnackBarModule, MatTooltipModule]
 })
 
 export class CreateUserFormDialog {
@@ -20,7 +20,7 @@ export class CreateUserFormDialog {
     createUser = new EventEmitter()
 
     readonly matDialogRef = inject(MatDialogRef<CreateUserFormDialog>)
-    private snackBar: MatSnackBar = inject(MatSnackBar)
+    private readonly _snackBar = inject(MatSnackBar);
 
     public form = new FormGroup({
         name: new FormControl(null, [Validators.required, Validators.minLength(2)]),
@@ -46,5 +46,9 @@ export class CreateUserFormDialog {
     public submitCreateForm(): void {
         this.createUserModal.emit()
     }
+
+  openSnackBar(message: string) {
+    this._snackBar.open(message);
+  }
 
 }

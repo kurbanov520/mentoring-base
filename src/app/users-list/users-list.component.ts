@@ -6,6 +6,7 @@ import { usersService } from "../users.service";
 import { MatDialog } from "@angular/material/dialog";
 import { CreateUserFormDialog } from "./create-user-dialog/create-user-dialog.component";
 import { MatButtonModule } from '@angular/material/button';
+import {CloseDialogComponent} from "../close-dialog/close-dialog.component";
 
 
 @Component({
@@ -68,4 +69,5 @@ export class UsersListComponent {
                 this.usersService.createUser(userData)
             });
     }
+
 }

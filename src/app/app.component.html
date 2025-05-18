@@ -14,11 +14,11 @@
     <div class="header-right">
       <div class="header-nav-image"><img src="/assets/Phone.svg" alt=""></div>
       <nav class="header-nav">
-        <div class="header-nav-item-two" *ngIf="isShowCatalog2">+7 (965) 084-29-29</div>
+        <div class="header-nav-item-two" *ngIf="isShowCatalog2">{{ numberPhone | removeDashes }}</div>
         <button (click)="isShowCatalog2 = !isShowCatalog2">Скрыть номер телефона</button>
         <button routerLink="posts">POSTS</button>
         <div class="header-nav-item-two"><img src="/assets/heart.svg" alt="heart"></div>
-        <div class="header-nav-item-two header-nav-item-two-border"><img src="/assets/Mask.svg" alt="shop">Пусто</div>
+        <div rangYellow class="header-nav-item-two header-nav-item-two-border"><img src="/assets/Mask.svg" alt="shop">Пусто</div>
       </nav>
     </div>
   </div>
@@ -538,14 +538,7 @@
 
   </div> -->
 
-  
+
 <!-- </div> -->
 <router-outlet></router-outlet>
-
-
-
-<div>
-  просто проверка ничего более
-</div>
-
 

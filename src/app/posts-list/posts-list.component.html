@@ -1,10 +1,13 @@
 <app-post-create-form (createPost)="createPost($event)"></app-post-create-form>
+<header style="width: 900px; margin: 0 auto;">
+  <p>Сегодня: {{ currentDate | date: 'medium' }}</p>
+</header>
 <div class="div-ngfor-one">
     <div *ngFor="let post of postService.posts$ | async" class="div-ngfor-two">
         <p>{{post.userId}}</p>
         <p>{{post.id}}</p>
         <p>{{post.title}}</p>
-        <p>{{post.body}}</p>
+        <p>{{post.body | slice}}</p>
         <button (click)="deletePost(post.id)">УДАЛИТЬ КНОПКУ</button>
     </div>
 </div>

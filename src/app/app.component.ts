@@ -1,6 +1,8 @@
 import { NgFor, NgIf } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
+import {RemoveDishesPipe} from "./pipes/remove-dishes.pipe";
+import {UserCardYellowDirective} from "./directives/user-card-yellow.directive";
 
 
 const itemNames = ['Каталог', 'Стройматериалы', 'Инструменты', 'Электрика', 'Интерьер и одежда']
@@ -26,7 +28,7 @@ const copyMyFunc = myFunc('О компании')
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, NgIf, NgFor, RouterLink],
+  imports: [RouterOutlet, NgIf, NgFor, RouterLink, RemoveDishesPipe, UserCardYellowDirective],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
@@ -67,9 +69,11 @@ export class AppComponent {
     this.copyUpperItemNames = upperItemNames.map(
       item => this.isUpperCase ? item.toLowerCase() : item.toUpperCase()
     )
-    
+
     this.isUpperCase = !this.isUpperCase
   }
-  
+
+  readonly numberPhone: string = "+7 (965) 084-29-29"
+
 }
 
