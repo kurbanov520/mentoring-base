@@ -1,8 +1,11 @@
-import { NgFor, NgIf } from '@angular/common';
-import { Component } from '@angular/core';
+import {AsyncPipe, NgFor, NgIf} from '@angular/common';
+import {Component, inject} from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import {RemoveDishesPipe} from "./pipes/remove-dishes.pipe";
 import {UserCardYellowDirective} from "./directives/user-card-yellow.directive";
+import {AuthComponent} from "./auth/auth.component";
+import {MatDialog} from '@angular/material/dialog';
+import {UserService} from "./user.service";
 
 
 const itemNames = ['Каталог', 'Стройматериалы', 'Инструменты', 'Электрика', 'Интерьер и одежда']
@@ -28,7 +31,7 @@ const copyMyFunc = myFunc('О компании')
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, NgIf, NgFor, RouterLink, RemoveDishesPipe, UserCardYellowDirective],
+  imports: [RouterOutlet, NgIf, NgFor, RouterLink, RemoveDishesPipe, UserCardYellowDirective, AsyncPipe],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
@@ -75,5 +78,34 @@ export class AppComponent {
 
   readonly numberPhone: string = "+7 (965) 084-29-29"
 
+  readonly dialog = inject(MatDialog)
+  readonly userService = inject(UserService)
+
+  public openDialog(): void {
+    (document.activeElement as HTMLElement)?.blur();
+    const dialogRef = this.dialog.open(AuthComponent, {
+      width: '400px',
+      height: '200px',
+    });
+
+    dialogRef.afterClosed().subscribe((result: string) => {
+      console.log(result)
+      if(result === 'admin') {
+        this.userService.loginAsAdmin()
+      } else if (result === 'user') {
+        this.userService.loginAsUser()
+      } else return undefined
+    });
+  }
+
+  public logout() {
+    if(confirm('Вы точно хотите выйти?')) {
+      console.log('Совершили logout')
+      return this.userService.logout()
+    }
+    else{
+      return false
+    }
+  }
 }
 

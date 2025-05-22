@@ -91,11 +91,7 @@
               "src/assets"
             ],
             "styles": [
-<<<<<<< HEAD
               "@angular/material/prebuilt-themes/deeppurple-amber.css",
-=======
-              "@angular/material/prebuilt-themes/pink-bluegrey.css",
->>>>>>> f55847e9e0449030b292a6bda8f35b1942865c4d
               "src/styles.scss"
             ],
             "scripts": []

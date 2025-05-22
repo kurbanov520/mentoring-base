@@ -7,6 +7,9 @@ import { MatDialog } from "@angular/material/dialog";
 import { CreateUserFormDialog } from "./create-user-dialog/create-user-dialog.component";
 import { MatButtonModule } from '@angular/material/button';
 import {CloseDialogComponent} from "../close-dialog/close-dialog.component";
+import {Store} from "@ngrx/store";
+import {UsersActions} from "./store/users.actions";
+import {selectUsers} from "./store/users.selectors";
 
 
 @Component({
@@ -24,11 +27,14 @@ export class UsersListComponent {
     readonly dialog = inject(MatDialog);
     readonly usersApiService = inject(UsersApiService);
     readonly usersService = inject(usersService)
+    private readonly store = inject(Store)
+    public readonly users$ = this.store.select(selectUsers)
 
     constructor() {
         this.usersApiService.getUsers().subscribe(
             (response: any) => {
-                this.usersService.setUsers(response)
+                this.usersService.setUsers(response);
+                this.store.dispatch(UsersActions.set({ users: response }));
             }
         )
 
@@ -36,6 +42,7 @@ export class UsersListComponent {
 }
     deleteUser(id: number) {
         this.usersService.deleteUser(id);
+        this.store.dispatch(UsersActions.delete( {id} ))
     }
 
     editUser(user: any) {
@@ -43,8 +50,9 @@ export class UsersListComponent {
             ...user,
             company: {
                 name: user.companyName
-            }
-        })
+            },
+        });
+        this.store.dispatch(UsersActions.edit({ user }));
     }
 
     public createUser(formData: any) {
@@ -56,7 +64,20 @@ export class UsersListComponent {
             company: {
                 name: formData.companyName
             }
-        })
+        });
+        this.store.dispatch(
+          UsersActions.create({
+            user: {
+              id: new Date().getTime(),
+              name: formData.name,
+              email: formData.email,
+              website: formData.website,
+              company: {
+                name: formData.companyName,
+              }
+            }
+          })
+        )
     }
 
     public openCreateUserDialog() {

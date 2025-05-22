@@ -1,7 +1,7 @@
 <div style="width: 1320px; margin: 0 auto;">
     <button mat-button (click)="openCreateUserDialog()" style="margin-top: 10px;">CREATE USER</button>
     <div style="display: flex; flex-wrap: wrap; gap: 10px;">
-        <div *ngFor="let item of usersService.users$ | async">
+        <div *ngFor="let item of users$ | async">
             <app-user-card [user]="item" (deleteUserOne)="deleteUser($event)" (editUser)="editUser($event)"></app-user-card>
         </div>
     </div>

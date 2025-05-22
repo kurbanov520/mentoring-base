@@ -29,6 +29,13 @@
       <div class="header-logo-two"><img src="/assets/light.svg" alt="light"></div>
       <nav class="header-nav">
         <div class="header-nav-item" *ngFor="let item of copyUpperItemNames">{{item}}</div>
+        <div>
+          <button routerLink="admin">ADMIN</button>
+          <div>
+            <button (click)="openDialog()" *ngIf="(userService.user$ | async) === null">ВОЙТИ</button>
+            <button (click)="logout()"  *ngIf="(userService.user$ | async) !== null">ВЫЙТИ</button>
+          </div>
+        </div>
       </nav>
     </div>
     <div class="header-right">
